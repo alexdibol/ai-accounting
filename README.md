@@ -68,7 +68,7 @@ At every level, **facts are separated from assumptions**, and all outputs defaul
 
 ---
 
-## Pedagogical evaluation (MBA / MFin)
+## Independent Pedagogical evaluation by OpenAI-ChatGPT (MBA / MFin)
 
 This book has **exceptionally high pedagogical value** for MBA and MFin students when the **author is also the instructor**, because it functions as a fully integrated teaching system rather than a standalone text.
 
