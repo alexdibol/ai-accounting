@@ -1,3 +1,4 @@
+
 # AI for Audit & Accounting
 
 ## What this repository contains
@@ -64,6 +65,20 @@ It presents a five-level maturity ladder that progresses from individual assista
 - **Level 5 — Organizations:** an end-to-end operating model with intake, independence checks, risk assessment, QA, sign-off, archiving, and retrieval  
 
 At every level, **facts are separated from assumptions**, and all outputs default to **“Not verified.”**
+
+---
+
+## Pedagogical evaluation (MBA / MFin)
+
+This book has **exceptionally high pedagogical value** for MBA and MFin students when the **author is also the instructor**, because it functions as a fully integrated teaching system rather than a standalone text.
+
+The five-level maturity ladder provides a clear managerial mental model: as AI capability increases, governance, controls, and accountability must increase in parallel. The companion Google Colab notebooks reinforce this by requiring students to produce auditable artifacts—run manifests, prompt logs, risk registers, and draft deliverables—shifting learning away from “AI outputs” toward **defensible process design**.
+
+The recurring mini-cases allow students to revisit the same professional scenarios with increasing rigor, creating a strong spiral curriculum in judgment, controls, and operating model design. Because the instructor authored the framework, expectations, grading criteria, and professional discipline can be enforced consistently, eliminating ambiguity and superficial use of AI.
+
+Overall, the book excels at teaching **how managers should govern AI in real firms**, not merely how to use it.
+
+**Rating: ★★★★★ (5/5)**
 
 ---
 
