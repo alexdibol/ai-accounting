@@ -2,610 +2,427 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>AI for Audit & Accounting — Governance-First (U.S. Practice) — Alejandro Reynoso</title>
-  <meta name="description" content="AI for Audit & Accounting: a governance-first educational guide for U.S. audit/accounting, SOX/ICFR, PCAOB/GAAS, and U.S. tax practice—with a Colab notebook for every chapter." />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="AI for Audit & Accounting — Governance-First (U.S. Practice) — Alejandro Reynoso" />
-  <meta property="og:description" content="An executable, governance-first curriculum for U.S. audit & accounting: book + Colab notebooks (Levels 1–5) with defensibility, traceability, and auditability by design." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://alexdibol.github.io/ai-accounting/" />
-  <meta property="og:image" content="https://alexdibol.github.io/og-image.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI for Audit &amp; Accounting (Governance-First)</title>
+  <meta name="description" content="AI for Audit & Accounting (Governance-First): a five-level maturity ladder for U.S. audit and accounting practice, with a PDF book and Google Colab notebooks (Chapters 1–5)." />
 
   <style>
-    :root {
-      --bg: #030008;
-      --text: #ffffff;
-      --muted: #b8c5d6;
-      --brand: #7c5cff;
-      --accent: #00d4ff;
-
-      --card: rgba(18, 21, 31, 0.78);
-      --border: #2a2d3f;
-
-      --glow: rgba(124, 92, 255, 0.40);
-      --accent-glow: rgba(0, 212, 255, 0.25);
-
-      --warn: #ffd36a;
-      --warn-glow: rgba(255, 211, 106, 0.18);
+    :root{
+      --bg:#07080d;
+      --panel:#0f1220;
+      --panel-2:#141836;
+      --text:#eef0ff;
+      --muted:#b8bddb;
+      --border:rgba(255,255,255,0.09);
+      --accent:#7aa2ff;
+      --accent2:#6ee7c8;
+      --warn:#ffd27a;
+      --shadow:0 18px 60px rgba(0,0,0,0.45);
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+      margin:0;
       background:
-        radial-gradient(1200px 700px at 30% -10%, rgba(124,92,255,0.14), transparent 60%),
-        radial-gradient(900px 600px at 90% 10%, rgba(0,212,255,0.10), transparent 55%),
+        radial-gradient(900px 600px at 15% 10%, rgba(122,162,255,0.18), transparent 55%),
+        radial-gradient(800px 600px at 85% 20%, rgba(110,231,200,0.12), transparent 55%),
+        radial-gradient(900px 650px at 60% 95%, rgba(255,210,122,0.07), transparent 55%),
         var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      line-height:1.6;
+    }
+    a{color:var(--accent);text-decoration:none;}
+    a:hover{color:var(--accent2);text-decoration:underline;}
+    .container{max-width:1140px;margin:0 auto;padding:32px 20px 84px;}
+
+    .hero{
+      padding:38px 34px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(20,24,54,0.92), rgba(15,18,32,0.88));
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(520px 360px at 16% 0%, rgba(122,162,255,0.18), transparent 60%),
+        radial-gradient(460px 330px at 92% 18%, rgba(110,231,200,0.10), transparent 60%),
+        radial-gradient(520px 360px at 55% 110%, rgba(255,210,122,0.08), transparent 60%);
+      pointer-events:none;
+      opacity:0.9;
+    }
+    .hero > *{position:relative;}
+
+    .kicker{
+      text-transform:uppercase;
+      letter-spacing:0.18em;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .hero h1{
+      font-size:38px;
+      margin:12px 0 10px;
+      line-height:1.15;
+      max-width:52ch;
+      text-transform:uppercase;
+      letter-spacing:0.02em;
+    }
+    .subtitle{
+      margin:0;
+      max-width:100ch;
+      color:var(--muted);
+      font-size:16px;
     }
 
-    a { color: inherit; text-decoration: none; transition: all 0.25s ease; }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 0;
-      margin-bottom: 24px;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      gap: 14px;
-      flex-wrap: wrap;
+    .section{margin-top:56px;}
+    .section h2{
+      font-size:28px;
+      margin:0 0 14px;
+      letter-spacing:-0.02em;
     }
+    .section p{color:var(--muted);max-width:100ch;margin:10px 0;}
 
-    .logo {
-      font-weight: 900;
-      font-size: 26px;
-      letter-spacing: 0.2px;
-      text-shadow: 0 0 15px var(--glow);
-      white-space: nowrap;
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+      gap:18px;
+      margin-top:22px;
     }
-
-    .nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-    .nav a {
-      color: var(--muted);
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-weight: 700;
-      border: 1px solid transparent;
+    .card{
+      padding:20px 20px;
+      border-radius:18px;
+      background:rgba(20,24,54,0.72);
+      border:1px solid var(--border);
+      box-shadow:0 10px 30px rgba(0,0,0,0.30);
     }
-    .nav a:hover {
-      color: #fff;
-      border-color: rgba(124,92,255,0.25);
-      box-shadow: 0 0 10px rgba(124,92,255,0.25);
+    .card h3{
+      margin:0 0 10px;
+      font-size:18px;
+      line-height:1.25;
+    }
+    .card p{
+      margin:0;
+      font-size:14px;
+      color:var(--muted);
     }
 
-    .section { padding: 52px 0; }
-    .section h2 {
-      text-align: center;
-      font-size: 34px;
-      font-weight: 900;
-      margin-bottom: 32px;
-      text-shadow: 0 0 20px var(--glow);
-      letter-spacing: 0.2px;
+    .linkcard{
+      display:block;
+      cursor:pointer;
+      transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+      color:inherit;
+      text-decoration:none;
     }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px;
-      backdrop-filter: blur(10px);
-      transition: all 0.35s ease;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(124,92,255,0.70);
-      box-shadow: 0 15px 40px rgba(124,92,255,0.18);
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .levels-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
-    @media (max-width: 900px) {
-      .levels-grid { grid-template-columns: 1fr; }
-    }
-
-    .card h1 {
-      font-size: clamp(34px, 5.2vw, 56px);
-      font-weight: 950;
-      letter-spacing: 0.3px;
-      text-shadow: 0 0 30px var(--glow);
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.7;
-      max-width: 980px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .card h3 { font-size: 20px; margin-bottom: 10px; line-height: 1.25; }
-    .card p { color: var(--muted); font-size: 15px; line-height: 1.65; }
-
-    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
-    .tag {
-      display: inline-block;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-weight: 900;
-      letter-spacing: 0.35px;
-      background: rgba(124,92,255,0.16);
-      border: 1px solid rgba(124,92,255,0.28);
-      color: #ebe8ff;
-    }
-    .tag.alt {
-      background: rgba(0,212,255,0.12);
-      border: 1px solid rgba(0,212,255,0.25);
-      color: #d9fbff;
-    }
-    .tag.gold {
-      background: rgba(255,211,106,0.12);
-      border: 1px solid rgba(255,211,106,0.25);
-      color: #fff3d1;
-    }
-
-    .card-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-weight: 850;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(10, 8, 18, 0.35);
-      color: #fff;
-    }
-    .btn:hover {
-      border-color: rgba(0,212,255,0.35);
-      box-shadow: 0 10px 25px rgba(0,212,255,0.10);
+    .linkcard:hover{
       transform: translateY(-2px);
+      border-color: rgba(122,162,255,0.35);
+      background: rgba(20,24,54,0.86);
+      text-decoration:none;
     }
-    .btn.primary {
-      background: linear-gradient(135deg, rgba(124,92,255,0.95), rgba(0,212,255,0.85));
-      border: 0;
+    .linkcard:focus{
+      outline:2px solid rgba(110,231,200,0.46);
+      outline-offset:3px;
     }
-    .btn.primary:hover { box-shadow: 0 15px 35px rgba(124,92,255,0.25); }
+    .hint{
+      margin-top:12px;
+      font-size:12px;
+      color:var(--muted);
+      opacity:0.92;
+      font-weight:700;
+      letter-spacing:0.02em;
+    }
 
-    .mini {
-      background: rgba(18, 21, 31, 0.55);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 16px;
-      padding: 18px;
+    .callout{
+      margin-top:18px;
+      padding:18px 18px;
+      border-radius:18px;
+      border:1px solid rgba(122,162,255,0.18);
+      background:linear-gradient(135deg, rgba(122,162,255,0.06), rgba(110,231,200,0.04));
+      color:var(--muted);
+      max-width:100ch;
     }
-    .mini h4 {
-      font-size: 14px;
-      font-weight: 950;
-      letter-spacing: 0.25px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .mini ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .mini li {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-    .mini li strong { color: #fff; }
+    .callout strong{color:var(--text);}
 
-    .announce {
-      margin-top: 16px;
-      background: linear-gradient(135deg, rgba(255,211,106,0.10), rgba(124,92,255,0.06));
-      border: 1px solid rgba(255,211,106,0.35);
-      border-radius: 14px;
-      padding: 12px 16px;
-      color: #fff3d1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      box-shadow: 0 10px 30px var(--warn-glow);
-      text-align: center;
-      flex-wrap: wrap;
+    .list{
+      margin-top:18px;
+      padding-left:22px;
+      color:var(--muted);
+      max-width:100ch;
     }
-    .badge {
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 950;
-      color: #1a1200;
-      background: var(--warn);
-      box-shadow: 0 0 0 4px rgba(255,211,106,0.15);
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .announce a { color: #ffffff; text-decoration: underline; text-underline-offset: 3px; }
+    .list li{margin-bottom:12px;}
+    .list strong{color:var(--text);}
 
-    footer {
-      margin: 70px 0 40px;
-      padding: 28px 0;
-      border-top: 1px solid rgba(255,255,255,0.10);
-      color: var(--muted);
-      font-size: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+    .reviewbox{
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(110,231,200,0.18);
+      background:linear-gradient(135deg, rgba(110,231,200,0.06), rgba(122,162,255,0.05));
+      color:var(--muted);
+      max-width:100ch;
     }
-    footer a:hover { color: var(--brand); }
+    .reviewbox strong{color:var(--text);}
+    .reviewbox .stars{color:var(--warn);font-weight:900;letter-spacing:0.08em;}
+    .reviewbox ul{margin:10px 0 0 18px; padding:0;}
+    .reviewbox li{margin:8px 0;}
+    .reviewbox hr{
+      border:0;
+      border-top:1px solid rgba(255,255,255,0.10);
+      margin:14px 0;
+    }
 
-    @media (max-width: 768px) {
-      .wrap { padding: 0 20px; }
-      header { flex-direction: column; text-align: center; }
+    .footer{
+      margin-top:80px;
+      padding-top:24px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
     }
+    .small{font-size:13px;color:var(--muted);max-width:100ch;}
+    .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(0,0,0,0.18);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:0.02em;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:999px;
+      background:rgba(122,162,255,0.9);
+      box-shadow:0 0 0 3px rgba(122,162,255,0.18);
+    }
+    .dot.g{background:rgba(110,231,200,0.95); box-shadow:0 0 0 3px rgba(110,231,200,0.18);}
+    .dot.y{background:rgba(255,210,122,0.95); box-shadow:0 0 0 3px rgba(255,210,122,0.18);}
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">Alejandro Reynoso</div>
-      <nav class="nav" aria-label="Primary">
-        <a href="/">Home</a>
-        <a href="#levels">Levels</a>
-        <a href="#how-to">How to Use</a>
-        <a href="#evaluation">Evaluation</a>
-        <a href="#links">Links</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+  <main class="container">
 
-    <!-- HERO -->
-    <section class="section" id="top" style="padding-top:36px;">
-      <div class="card" style="text-align:center;">
-        <h1>AI for Audit &amp; Accounting</h1>
-        <p class="lead">
-          A governance-first, educational guide for <strong>U.S. audit and accounting practice</strong> —
-          built as an executable learning system:
-          <strong>book + Colab notebooks</strong>.
-          The objective is not speed or automation, but
-          <strong>professional defensibility, traceability, and auditability</strong>
-          under <strong>GAAS, PCAOB, SOX/ICFR, and U.S. tax practice</strong> constraints.
-        </p>
+    <section class="hero">
+      <div class="kicker">Governance-first · U.S. audit &amp; accounting · PDF + Colab notebooks (Chapters 1–5)</div>
+      <h1>AI for Audit &amp; Accounting</h1>
 
-        <div class="card-actions" style="justify-content:center;margin-top:18px;">
-          <a class="btn primary" href="https://github.com/alexdibol/ai-accounting" target="_blank" rel="noopener">Open Repository</a>
-          <a class="btn" href="https://github.com/alexdibol/ai-accounting/blob/main/book/AI_for_Audit_and_Accounting.pdf" target="_blank" rel="noopener">Download PDF</a>
-          <a class="btn" href="#levels">Browse Levels</a>
-          <a class="btn" href="/">Back to Home</a>
+      <p class="subtitle">
+        An educational, governance-first guide for U.S. audit and accounting practice. GenAI is treated as
+        <em>drafting and analysis support</em>—not “autopilot audit.” As capability increases across the maturity ladder,
+        risk increases too: professional skepticism, supervision, documentation, privacy, independence considerations, and
+        evidence discipline must scale so outputs remain defensible, reviewable, and audit-ready.
+      </p>
+
+      <div class="pillrow" aria-label="Governance priorities">
+        <span class="pill"><span class="dot"></span> Auditability + Traceability</span>
+        <span class="pill"><span class="dot g"></span> QC + Human Review + Sign-off</span>
+        <span class="pill"><span class="dot y"></span> Privacy + Minimum-Necessary Data</span>
+      </div>
+    </section>
+
+    <section class="section" id="downloads">
+      <h2>Download and Run</h2>
+      <p>
+        The book PDF is published as a versioned GitHub Release asset. The companion notebooks live in this repository
+        and open directly in Google Colab.
+      </p>
+
+      <div class="grid">
+        <!-- TODO: Replace release tag if you use a different one -->
+        <a class="card linkcard" href="https://github.com/alexdibol/ai-accounting/releases/download/book-ai-accounting-v01/AI_for_Audit_and_Accounting.pdf" target="_blank" rel="noopener">
+          <h3>Book PDF</h3>
+          <p>Download the current release edition of the book as a single PDF.</p>
+          <div class="hint">Download PDF →</div>
+        </a>
+
+        <a class="card linkcard" href="https://github.com/alexdibol/ai-accounting/tree/main/notebooks" target="_blank" rel="noopener">
+          <h3>Notebooks Folder</h3>
+          <p>Browse all chapter notebooks in the repository (ch01 … ch05).</p>
+          <div class="hint">Open folder →</div>
+        </a>
+      </div>
+
+      <div class="callout">
+        <strong>Governance-first promise:</strong> Every chapter teaches “capability ↑ ⇒ risk ↑ ⇒ controls ↑.”
+        The goal is not faster output. The goal is output that survives review, can be reconstructed, and does not
+        create avoidable audit, reporting, or compliance harm.
+      </div>
+    </section>
+
+    <section class="section" id="notebooks">
+      <h2>Chapter Notebooks (Colab)</h2>
+      <p>
+        Each notebook is executable, auditable, and classroom-ready. Labs produce structured outputs and governance artifacts
+        (run manifest, prompts log, risk log, deliverables bundle) so results are reviewable rather than ephemeral.
+      </p>
+
+      <div class="grid">
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch01/chapter_1.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 1 — Level 1 (Chatbots)</h3>
+          <p>Drafting: emails, memos, and workpapers with facts-first discipline and “Not verified” labeling.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch02/chapter_2.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 2 — Level 2 (Reasoners)</h3>
+          <p>Reasoning: issue spotting, alternatives, variance/exception hypotheses, assumptions and verification planning.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch03/chapter_3.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 3 — Level 3 (Agents)</h3>
+          <p>Supervised multi-step workflow: intake → risk assess → procedures → QA → sign-off → archive.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch04/chapter_4.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 4 — Level 4 (Innovators)</h3>
+          <p>Firm assets: reusable prompts, playbooks, evaluations, and controlled releases with change management.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch05/chapter_5.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 5 — Level 5 (Organizations)</h3>
+          <p>Operating model simulation: ownership, evidence, QA gates, sign-off, supervision-ready artifacts.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+      </div>
+
+      <div class="callout">
+        <strong>Important:</strong> Notebooks are educational. Do not paste confidential client information into external model prompts.
+        Use redaction/anonymization and “minimum necessary” inputs by default. Document any exception and follow firm policy.
+      </div>
+    </section>
+
+    <section class="section" id="ladder">
+      <h2>The Five-Level Maturity Ladder</h2>
+      <p>
+        The book’s organizing spine is a progression from individual drafting assistance to fully governed, organization-grade operations.
+        The point is not “more AI.” The point is usefulness that survives review, inspection, and reconstruction.
+      </p>
+
+      <ul class="list">
+        <li><strong>Level 1 — Chatbots:</strong> supervised drafting of emails, memos, and workpapers with clear labeling and redaction.</li>
+        <li><strong>Level 2 — Reasoners:</strong> explicit reasoning structures: issue maps, alternatives, assumptions, and verification tasks.</li>
+        <li><strong>Level 3 — Agents:</strong> multi-step workflows with human checkpoints, role separation, and immutable logs.</li>
+        <li><strong>Level 4 — Innovators:</strong> reusable firm assets (templates, playbooks, evaluations) with controlled releases and regression tests.</li>
+        <li><strong>Level 5 — Organizations:</strong> operating model + governance: intake, independence, QA, approvals, retention, retrieval.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="cases">
+      <h2>Recurring Mini-Cases (Used in Every Chapter)</h2>
+      <p>
+        The ladder is taught through recurring audit/accounting mini-cases so readers can isolate what changes when AI capability increases:
+        the structure improves, the risk scales, and governance must become more explicit.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Financial Statement Audit (GAAS / PCAOB)</h3>
+          <p>Planning, risk assessment, procedures and documentation discipline with “facts vs assumptions” and evidence gates.</p>
         </div>
-
-        <div class="tag-row" style="justify-content:center;">
-          <span class="tag alt">Levels 1–5</span>
-          <span class="tag">Executable</span>
-          <span class="tag gold">Governance-first</span>
+        <div class="card">
+          <h3>SOX / ICFR</h3>
+          <p>Control narratives, walkthrough support, test design scaffolds, and traceable evidence packages for review.</p>
         </div>
-
-        <div class="announce">
-          <span class="badge">Important</span>
-          <div>
-            Educational materials only (not audit/accounting/tax/legal advice). Do not input sensitive client data into external tools.
-            Use redaction + minimum-necessary inputs by default.
-          </div>
+        <div class="card">
+          <h3>Tax / ASC 740 &amp; Filings</h3>
+          <p>Provision workflow support and drafting with strict verification posture (no fabricated rules or citations).</p>
+        </div>
+        <div class="card">
+          <h3>Teaching / Methodology</h3>
+          <p>Classroom-ready labs: repeatable cases, grading clarity, and governance-native artifacts each run.</p>
         </div>
       </div>
     </section>
 
-    <!-- HOW TO USE (compact, high signal) -->
-    <section class="section" id="how-to">
-      <h2>How to Use This Book + Notebooks</h2>
-
-      <div class="cards-grid">
-        <div class="card">
-          <h3>1) Read with a professional goal</h3>
-          <p>
-            Each chapter is written for real audit/accounting settings: what the model can do today, where it fails,
-            and what “good output” means under supervision, documentation, and professional skepticism.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Mental model</span>
-            <span class="tag alt">Failure modes</span>
-            <span class="tag gold">Good output</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>2) Run the Colab notebook</h3>
-          <p>
-            Each chapter has a Colab notebook that operationalizes the chapter: structured inputs/outputs, explicit assumptions,
-            and governance-native artifacts (manifests, logs, risk registers, versioned deliverables).
-          </p>
-          <div class="tag-row">
-            <span class="tag alt">Colab</span>
-            <span class="tag">Artifacts</span>
-            <span class="tag gold">Auditability</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>3) Keep the verification posture</h3>
-          <p>
-            Treat outputs as drafts unless verified. Separate facts from assumptions. Keep open items explicit.
-            Default to “Not verified” until evidence and human review exist.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Traceability</span>
-            <span class="tag alt">Assumptions</span>
-            <span class="tag gold">Accountability</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="cards-grid" style="margin-top:20px;">
-        <div class="mini">
-          <h4>Suggested path (fast)</h4>
-          <ul>
-            <li><strong>Start:</strong> Level 1 to learn disciplined drafting (facts vs assumptions, “Not verified”).</li>
-            <li><strong>Then:</strong> Level 3 to see checkpointed workflows + immutable logs in action.</li>
-            <li><strong>Finally:</strong> Level 5 to understand organization-grade intake, QA, sign-off, and archiving.</li>
-          </ul>
-        </div>
-        <div class="mini">
-          <h4>Suggested path (full)</h4>
-          <ul>
-            <li><strong>1 → 2:</strong> drafting + structured reasoning (issue spotting, alternatives, exception hypotheses)</li>
-            <li><strong>3:</strong> agentic workflows with human checkpoints and artifact trails</li>
-            <li><strong>4 → 5:</strong> reusable assets, evaluation harnesses, and end-to-end operating model controls</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- PEDAGOGICAL EVALUATION (OpenAI) -->
-    <section class="section" id="evaluation">
+    <section class="section" id="evaluations">
       <h2>Pedagogical Evaluation (MBA / MFin)</h2>
+      <p>
+        This section is intentionally labeled as <em>non-authoritative</em>. It is included to demonstrate how third-party feedback
+        can be documented and versioned without being confused for verification of factual correctness or professional compliance.
+      </p>
 
-      <div class="cards-grid">
-        <div class="card">
-          <h3>OpenAI Evaluation</h3>
-          <p>
-            This book has <strong>exceptionally high pedagogical value</strong> for MBA and MFin students when the
-            <strong>author is also the instructor</strong>, because it functions as a fully integrated teaching system
-            rather than a standalone text. The five-level maturity ladder provides a clear managerial mental model:
-            as AI capability increases, governance, controls, and accountability must increase in parallel.
-          </p>
-          <p style="margin-top:12px;">
-            The companion Google Colab notebooks reinforce this by requiring students to produce auditable artifacts—run manifests,
-            prompt logs, risk registers, and draft deliverables—shifting learning away from “AI outputs” toward
-            <strong>defensible process design</strong>.
-          </p>
-          <p style="margin-top:12px;">
-            The recurring mini-cases allow students to revisit the same professional scenarios with increasing rigor, creating a
-            strong spiral curriculum in judgment, controls, and operating model design. Because the instructor authored the framework,
-            expectations, grading criteria, and professional discipline can be enforced consistently, eliminating ambiguity and superficial use of AI.
-          </p>
-          <p style="margin-top:12px;">
-            Overall, the book excels at teaching <strong>how managers should govern AI in real firms</strong>, not merely how to use it.
-          </p>
+      <div class="reviewbox">
+        <div><strong>Pedagogical Evaluation (MBA / MFin)</strong></div>
+        <div class="stars" aria-label="Five stars">⭐⭐⭐⭐⭐</div>
 
-          <div class="tag-row" style="margin-top:16px;">
-            <span class="tag alt">Teaching system</span>
-            <span class="tag">Governance + accountability</span>
-            <span class="tag gold">★★★★★ (5/5)</span>
-          </div>
+        <hr/>
 
-          <div class="announce" style="margin-top:18px;">
-            <span class="badge">Rating</span>
-            <div><strong>★★★★★ (5/5)</strong></div>
-          </div>
-        </div>
+        <p style="margin:0;">
+          This book has <strong>exceptionally high pedagogical value</strong> for MBA and MFin students when the <strong>author is also the instructor</strong>,
+          because it functions as a fully integrated teaching system rather than a standalone text. The five-level maturity ladder provides a clear
+          managerial mental model: as AI capability increases, governance, controls, and accountability must increase in parallel. The companion Google
+          Colab notebooks reinforce this by requiring students to produce auditable artifacts—run manifests, prompt logs, risk registers, and draft
+          deliverables—shifting learning away from “AI outputs” toward <strong>defensible process design</strong>.
+        </p>
 
-        <div class="card">
-          <h3>Why this matters (in practice)</h3>
-          <p>
-            In audit/accounting education, the hardest skill to teach is not “prompting”—it is disciplined professional judgment:
-            skepticism, documentation, and control-aware workflow design. This curriculum makes those skills first-class deliverables
-            by design.
-          </p>
-          <div class="tag-row">
-            <span class="tag alt">Professional judgment</span>
-            <span class="tag">Documentation</span>
-            <span class="tag gold">Controls-first</span>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="#levels">Browse Levels</a>
-            <a class="btn" href="https://github.com/alexdibol/ai-accounting/blob/main/book/AI_for_Audit_and_Accounting.pdf" target="_blank" rel="noopener">Open the Book</a>
-          </div>
-        </div>
+        <p style="margin:12px 0 0;">
+          The recurring mini-cases allow students to revisit the same professional scenarios with increasing rigor, creating a strong spiral curriculum in judgment,
+          controls, and operating model design. Because the instructor authored the framework, expectations, grading criteria, and professional discipline can be enforced
+          consistently, eliminating ambiguity and superficial use of AI. Overall, the book excels at teaching <strong>how managers should govern AI in real firms</strong>,
+          not merely how to use it.
+        </p>
+
+        <hr/>
+
+        <div><strong>Labeling note:</strong></div>
+        <ul>
+          <li><strong>Source:</strong> OpenAI (generated evaluation text).</li>
+          <li><strong>Status:</strong> Not verified; included as an example of how to document independent opinion under governance-first norms.</li>
+        </ul>
       </div>
     </section>
 
-    <!-- LEVELS -->
-    <section class="section" id="levels">
-      <h2>Levels 1–5 (Maturity Ladder)</h2>
+    <section class="section" id="disclaimer">
+      <h2>License and Disclaimers</h2>
 
-      <div class="levels-grid">
-        <div class="card">
-          <h3>Level 1 — Chatbots</h3>
-          <p>
-            Supervised drafting for memos, emails, and workpapers with strict structure:
-            facts vs assumptions vs open items, and a default “Not verified” posture.
-          </p>
-          <div class="tag-row">
-            <span class="tag alt">Drafting</span>
-            <span class="tag">Structure</span>
-            <span class="tag gold">Not verified</span>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch01/chapter_1.ipynb" target="_blank" rel="noopener">Open Chapter 1 in Colab</a>
-            <a class="btn" href="https://github.com/alexdibol/ai-accounting/blob/main/notebooks/ch01/chapter_1.ipynb" target="_blank" rel="noopener">View Notebook</a>
-          </div>
-        </div>
+      <p class="small">
+        <strong>Educational disclaimer:</strong> This material is provided for educational purposes only. It does not constitute audit, accounting,
+        tax, legal, investment, or other professional advice. A qualified human professional must review, verify, and approve any use in practice.
+      </p>
 
-        <div class="card">
-          <h3>Level 2 — Reasoners</h3>
-          <p>
-            Structured reasoning for issue spotting, alternatives, variance explanations, and exception hypotheses —
-            with explicit assumptions and verification questions.
-          </p>
-          <div class="tag-row">
-            <span class="tag alt">Reasoning</span>
-            <span class="tag">Alternatives</span>
-            <span class="tag gold">Verification</span>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch02/chapter_2.ipynb" target="_blank" rel="noopener">Open Chapter 2 in Colab</a>
-            <a class="btn" href="https://github.com/alexdibol/ai-accounting/blob/main/notebooks/ch02/chapter_2.ipynb" target="_blank" rel="noopener">View Notebook</a>
-          </div>
-        </div>
+      <p class="small">
+        <strong>Client confidentiality and data hygiene:</strong> Do not paste confidential client information into external model prompts.
+        Use redaction/anonymization and “minimum necessary” inputs by default. Document any exception and follow firm policy and applicable law.
+      </p>
 
-        <div class="card">
-          <h3>Level 3 — Agents</h3>
-          <p>
-            Multi-step workflows with human checkpoints and immutable logs: run manifests, prompt logs,
-            risk logs, and versioned deliverables across repeated cases.
-          </p>
-          <div class="tag-row">
-            <span class="tag alt">Workflows</span>
-            <span class="tag">Checkpoints</span>
-            <span class="tag gold">Immutable logs</span>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch03/chapter_3.ipynb" target="_blank" rel="noopener">Open Chapter 3 in Colab</a>
-            <a class="btn" href="https://github.com/alexdibol/ai-accounting/blob/main/notebooks/ch03/chapter_3.ipynb" target="_blank" rel="noopener">View Notebook</a>
-          </div>
-        </div>
+      <p class="small">
+        <strong>Professional standards posture:</strong> Treat all model-generated content as <em>Not verified</em> until validated by evidence and human review.
+        Outputs must separate facts provided by the user from assumptions and open questions.
+      </p>
 
-        <div class="card">
-          <h3>Level 4 — Innovators</h3>
-          <p>
-            Reusable, tested AI assets (playbooks, templates, evaluation harnesses) with controlled change management,
-            regression checks, and approved variants.
-          </p>
-          <div class="tag-row">
-            <span class="tag alt">Reusable assets</span>
-            <span class="tag">Testing</span>
-            <span class="tag gold">Change control</span>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch04/chapter_4.ipynb" target="_blank" rel="noopener">Open Chapter 4 in Colab</a>
-            <a class="btn" href="https://github.com/alexdibol/ai-accounting/blob/main/notebooks/ch04/chapter_4.ipynb" target="_blank" rel="noopener">View Notebook</a>
-          </div>
-        </div>
+      <p class="small">
+        <strong>No fabricated sources or claims:</strong> Zero tolerance for invented citations, firm policies, standards interpretations, testing results,
+        tax positions, or compliance conclusions. When evidence is missing, the correct output is a verification task list.
+      </p>
 
-        <div class="card">
-          <h3>Level 5 — Organizations</h3>
-          <p>
-            End-to-end operating model: intake, independence checks, risk assessment, QA, sign-off,
-            archiving, retrieval, and evidence-ready retention.
-          </p>
-          <div class="tag-row">
-            <span class="tag alt">Operating model</span>
-            <span class="tag">QA + sign-off</span>
-            <span class="tag gold">Evidence-ready</span>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch05/chapter_5.ipynb" target="_blank" rel="noopener">Open Chapter 5 in Colab</a>
-            <a class="btn" href="https://github.com/alexdibol/ai-accounting/blob/main/notebooks/ch05/chapter_5.ipynb" target="_blank" rel="noopener">View Notebook</a>
-          </div>
-        </div>
-
-        <!-- Optional: compact “all links” card -->
-        <div class="card" id="links">
-          <h3>All Links</h3>
-          <p>One place to jump to the repository, PDF, notebooks folder, and all Colab entry points.</p>
-          <div class="tag-row">
-            <span class="tag">Navigation</span>
-            <span class="tag alt">Shortcuts</span>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="https://github.com/alexdibol/ai-accounting" target="_blank" rel="noopener">Repo</a>
-            <a class="btn" href="https://github.com/alexdibol/ai-accounting/blob/main/book/AI_for_Audit_and_Accounting.pdf" target="_blank" rel="noopener">PDF</a>
-            <a class="btn" href="https://github.com/alexdibol/ai-accounting/tree/main/notebooks" target="_blank" rel="noopener">Notebooks</a>
-          </div>
-          <div class="card-actions" style="margin-top:10px;">
-            <a class="btn" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch01/chapter_1.ipynb" target="_blank" rel="noopener">Colab Ch1</a>
-            <a class="btn" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch02/chapter_2.ipynb" target="_blank" rel="noopener">Colab Ch2</a>
-            <a class="btn" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch03/chapter_3.ipynb" target="_blank" rel="noopener">Colab Ch3</a>
-            <a class="btn" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch04/chapter_4.ipynb" target="_blank" rel="noopener">Colab Ch4</a>
-            <a class="btn" href="https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch05/chapter_5.ipynb" target="_blank" rel="noopener">Colab Ch5</a>
-          </div>
-        </div>
-      </div>
+      <p class="small">
+        <strong>Repository license:</strong> See the repository’s LICENSE file for terms.
+      </p>
     </section>
 
-    <!-- CONTACT (kept consistent with your style) -->
-    <section class="section" id="contact">
-      <h2>Contact</h2>
-      <div class="card" style="text-align:center;">
-        <p>
-          Interested in collaboration on governance-first applied AI, audit/accounting education, professional judgment training,
-          or firm-grade AI operating models? I welcome partnerships across academia, practice, and innovation.
-        </p>
-
-        <div class="card-actions" style="justify-content:center;margin-top:16px;">
-          <a class="btn primary" href="mailto:areynoso@yahoo.com">Email</a>
-          <a class="btn" href="https://github.com/alexdibol" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn" href="/">Back to Home</a>
-        </div>
-
-        <p style="margin-top:18px;">
-          <strong>Email:</strong>
-          <a href="mailto:areynoso@yahoo.com" style="color:var(--accent);font-weight:950;">areynoso@yahoo.com</a>
-        </p>
-        <p style="margin-top:10px;">
-          <strong>GitHub:</strong>
-          <a href="https://github.com/alexdibol" target="_blank" rel="noopener" style="color:var(--accent);font-weight:950;">github.com/alexdibol</a>
-        </p>
-      </div>
-    </section>
-
-    <footer>
-      <div>© <span id="y"></span> Alejandro Reynoso</div>
-      <div>
-        <a href="/">Home</a> ·
-        <a href="#levels">Levels</a> ·
-        <a href="#evaluation">Evaluation</a> ·
-        <a href="https://github.com/alexdibol/ai-accounting" target="_blank" rel="noopener">ai-accounting</a> ·
-        <a href="mailto:areynoso@yahoo.com">areynoso@yahoo.com</a>
-      </div>
+    <footer class="footer">
+      © <span id="year"></span> Alejandro Reynoso · AI for Audit &amp; Accounting (Governance-First)
+      <br/>Hosted on GitHub Pages · Built as governed, executable courseware
     </footer>
-  </div>
+
+  </main>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
+
