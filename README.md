@@ -1,4 +1,3 @@
-
 # AI for Audit & Accounting
 
 ## What this repository contains
@@ -14,7 +13,7 @@ The focus is not speed or automation, but **professional defensibility, traceabi
 
 ### Book (PDF)
 - **Direct download:**  
-  https://github.com/alexdibol/ai-accounting/blob/main/book/AI_for_Audit_and_Accounting.pdf
+  https://github.com/alexdibol/ai-accounting/blob/main/book/AI%20ACCOUNTING%20BOOK.pdf
 
 ---
 
@@ -26,19 +25,19 @@ The focus is not speed or automation, but **professional defensibility, traceabi
 
 ### Direct Google Colab links
 - **Chapter 1 — Level 1 (Chatbots):**  
-  https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch01/chapter_1.ipynb
+  https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/chapter_1.ipynb
 
 - **Chapter 2 — Level 2 (Reasoners):**  
-  https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch02/chapter_2.ipynb
+  https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/chapter_2.ipynb
 
 - **Chapter 3 — Level 3 (Agents):**  
-  https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch03/chapter_3.ipynb
+  https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/chapter_3.ipynb
 
 - **Chapter 4 — Level 4 (Innovators):**  
-  https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch04/chapter_4.ipynb
+  https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/chapter_4.ipynb
 
 - **Chapter 5 — Level 5 (Organizations):**  
-  https://colab.research.google.com/github/alexdibol/ai-accounting/blob/main/notebooks/ch05/chapter_5.ipynb
+  (coming soon)
 
 ---
 
@@ -123,3 +122,4 @@ This project is released under the **MIT License**.
 
 ## Suggested citation
 Alejandro Reynoso, *AI for Audit & Accounting*, companion notebooks repository, GitHub.
+
